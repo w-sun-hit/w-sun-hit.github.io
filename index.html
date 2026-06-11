@@ -1437,7 +1437,7 @@
           </article>
           
           <div class="publication-toggle-row">
-            <button class="show-more-btn" type="button" id="togglePublications" aria-label="Show more publications">
+            <button class="show-more-btn" type="button" id="togglePublications" aria-label="Show more publications" aria-expanded="false">
               <span class="show-more-icon">∨∨∨</span>
               <span class="show-more-text">Show More</span>
             </button>
@@ -1445,7 +1445,7 @@
 
 
 
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/monoamnet.jpg" alt="" />
             </div>
@@ -1459,7 +1459,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/resdnet.jpg" alt="" />
             </div>
@@ -1474,7 +1474,7 @@
             </div>
           </article>
           
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/retinal-surgery.jpg" alt="" />
             </div>
@@ -1488,7 +1488,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/gantry-control.jpg" alt="" />
             </div>
@@ -1502,7 +1502,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/hierarchical-control.jpg" alt="" />
             </div>
@@ -1516,7 +1516,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/mono3d-augmentation.jpg" alt="" />
             </div>
@@ -1530,7 +1530,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden">
+          <article class="publication-item is-hidden hidden-publication">
             <div class="paper-media placeholder">
               <img src="assets/publications/passivity-control.jpg" alt="" />
             </div>
@@ -1623,26 +1623,31 @@
 
     // Publications: show more / show less
     const pubToggle = document.getElementById("togglePublications");
-    const hiddenPubs = Array.from(document.querySelectorAll(".publication-item.is-hidden"));
+    const hiddenPubs = Array.from(document.querySelectorAll(".publication-item.hidden-publication"));
     let publicationsExpanded = false;
 
-    if (pubToggle && hiddenPubs.length) {
-      pubToggle.addEventListener("click", () => {
-        publicationsExpanded = !publicationsExpanded;
+    function setPublicationState(expanded) {
+      publicationsExpanded = expanded;
 
-        hiddenPubs.forEach(item => {
-          if (publicationsExpanded) {
-            item.classList.remove("is-hidden");
-          } else {
-            item.classList.add("is-hidden");
-          }
-        });
+      hiddenPubs.forEach(item => {
+        item.classList.toggle("is-hidden", !expanded);
+      });
 
-        pubToggle.innerHTML = publicationsExpanded
+      if (pubToggle) {
+        pubToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
+        pubToggle.innerHTML = expanded
           ? '<span class="show-more-icon">∧∧∧</span><span class="show-more-text">Show Less</span>'
           : '<span class="show-more-icon">∨∨∨</span><span class="show-more-text">Show More</span>';
+      }
+    }
+
+    if (pubToggle && hiddenPubs.length) {
+      setPublicationState(false);
+      pubToggle.addEventListener("click", () => {
+        setPublicationState(!publicationsExpanded);
       });
     }
+
 
   </script>
 </body>
