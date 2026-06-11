@@ -633,6 +633,33 @@
       font-weight: 850;
     }
 
+    .opening-content {
+      display: grid;
+      gap: 12px;
+    }
+
+    .opening-list {
+      margin: 0;
+      padding-left: 22px;
+      color: #232832;
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 650;
+    }
+
+    .opening-list li {
+      margin: 4px 0;
+    }
+
+    .opening-note {
+      margin: 0;
+      color: #232832;
+      font-size: 16px;
+      line-height: 1.8;
+      font-weight: 650;
+      text-align: justify;
+    }
+
     .contact-btn {
       display: inline-flex;
       align-items: center;
@@ -959,8 +986,8 @@
     <!-- 4. Publications -->
     <section id="publications" class="publications">
       <div class="container">
-        <h2 class="section-title">学术论文</h2>
-        <p class="section-subtitle">Publications</p>
+        <h2 class="pub-title">PUBLICATIONS</h2>
+        <p class="pub-note">*Equal contribution&nbsp;&nbsp;†Corresponding author</p>
 
         <div class="pub-list">
           <article class="pub-item">
@@ -1019,8 +1046,8 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2 class="section-title">招生信息</h2>
-            <p class="section-subtitle">Contact Information</p>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">招生信息 / Contact Information</p>
           </div>
         </div>
 
@@ -1032,12 +1059,29 @@
             </svg>
           </div>
 
-          <p class="opening-text">
-            <strong>机器人&机械臂控制与优化：</strong>
-            侧重于机械臂强不确定性、关节柔性、负载变化等情况下的辨识、控制与优化问题。
-            每年可招收硕士生上限3人（硕博连读优先），博士生2–3人，欢迎广大同学报考。
-            联系邮箱：<a href="mailto:w.sun@hit.edu.cn">w.sun@hit.edu.cn</a>
-          </p>
+          <div class="opening-content">
+            <p class="opening-text">
+              <strong>现面向以下研究方向招生：</strong>
+            </p>
+            <ol class="opening-list">
+              <li>
+                <strong>精密运动控制：</strong>
+                侧重高速高精度跟踪控制、运动规划与控制一体化、复杂运动平台控制等问题。
+              </li>
+              <li>
+                <strong>机器人&机械臂控制与优化：</strong>
+                侧重于机械臂强不确定性、关节柔性、负载变化等情况下的辨识、控制与优化问题。
+              </li>
+              <li>
+                <strong>具身智能操作：</strong>
+                侧重感知、规划、抓取与操作一体化，以及复杂场景下的具身智能任务执行。
+              </li>
+            </ol>
+            <p class="opening-note">
+              每年可招收硕士生上限3人（硕博连读优先），博士生2–3人，欢迎广大同学报考。
+              联系邮箱：<a href="mailto:w.sun@hit.edu.cn">w.sun@hit.edu.cn</a>
+            </p>
+          </div>
         </div>
       </div>
     </section>
