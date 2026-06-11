@@ -185,14 +185,14 @@
 
     /* Hero */
     .hero {
-      padding-top: 38px;
+      padding-top: 32px;
     }
 
     .hero-top {
       display: grid;
       grid-template-columns: 240px minmax(0, 1fr);
       gap: 28px;
-      align-items: start;
+      align-items: flex-start;
       margin-bottom: 24px;
     }
 
@@ -222,6 +222,9 @@
         radial-gradient(circle at 90% 10%, rgba(15, 98, 196, 0.08), transparent 34%),
         #fff;
       min-height: 315px;
+      margin-top: 0;
+      align-self: start;
+      transform: translateY(-8px);
     }
 
     .hero-detail-card {
@@ -693,6 +696,7 @@
 
       .bio-card {
         min-height: 0;
+        transform: none;
       }
 
       .research-scroll {
