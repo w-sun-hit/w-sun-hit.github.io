@@ -537,29 +537,48 @@
 
     .show-more-btn {
       display: inline-flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      padding: 11px 22px;
-      border: 1.5px solid var(--blue);
-      border-radius: 8px;
-      background: #fff;
+      gap: 4px;
+      padding: 8px 18px;
+      border: none;
+      background: transparent;
       color: var(--blue);
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 850;
       cursor: pointer;
       transition: all 0.2s ease;
     }
 
     .show-more-btn:hover {
-      background: var(--blue);
-      color: #fff;
+      color: var(--blue-dark);
+      transform: translateY(2px);
+    }
+
+    .show-more-icon {
+      display: block;
+      font-size: 24px;
+      line-height: 1;
+      letter-spacing: 3px;
+      background: linear-gradient(90deg, rgba(15, 98, 196, 0.25), rgba(15, 98, 196, 0.7), rgba(15, 98, 196, 1));
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .show-more-text {
+      display: block;
+      font-size: 14px;
+      line-height: 1;
+      letter-spacing: 0.02em;
     }
 
     .publication-toggle-row {
       display: flex;
-      justify-content: flex-end;
+      justify-content: center;
       align-items: center;
-      padding: 0 0 26px;
+      padding: 8px 0 30px;
       border-bottom: 1px solid var(--line);
     }
 
@@ -993,7 +1012,7 @@
       }
 
       .publication-toggle-row {
-        justify-content: flex-start;
+        justify-content: center;
       }
 
       .publication-head-left h2 {
@@ -1418,7 +1437,10 @@
           </article>
           
           <div class="publication-toggle-row">
-            <button class="show-more-btn" type="button" id="togglePublications">Show More</button>
+            <button class="show-more-btn" type="button" id="togglePublications" aria-label="Show more publications">
+              <span class="show-more-icon">∨∨∨</span>
+              <span class="show-more-text">Show More</span>
+            </button>
           </div>
 
 
@@ -1608,7 +1630,9 @@
         hiddenPubs.forEach(item => {
           item.style.display = expanding ? "grid" : "none";
         });
-        pubToggle.textContent = expanding ? "Show Less" : "Show More";
+        pubToggle.innerHTML = expanding
+          ? '<span class="show-more-icon">∧∧∧</span><span class="show-more-text">Show Less</span>'
+          : '<span class="show-more-icon">∨∨∨</span><span class="show-more-text">Show More</span>';
       });
     }
 
