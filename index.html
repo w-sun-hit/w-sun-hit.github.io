@@ -522,17 +522,17 @@
 
     .publication-head-left h2 {
       margin: 0;
-      font-size: 44px;
-      line-height: 1.1;
-      font-weight: 950;
+      font-size: 30px;
+      line-height: 1.15;
+      font-weight: 850;
       letter-spacing: 0.01em;
     }
 
     .publication-head-left p {
-      margin: 8px 0 0;
+      margin: 4px 0 0;
       color: var(--muted);
-      font-size: 18px;
-      font-weight: 700;
+      font-size: 16px;
+      font-weight: 600;
     }
 
     .show-more-btn {
@@ -1016,7 +1016,7 @@
       }
 
       .publication-head-left h2 {
-        font-size: 36px;
+        font-size: 25px;
       }
 
       .pub-thumb img,
@@ -1299,12 +1299,11 @@
     <!-- 4. Publications -->
     <section id="publications" class="publications">
       <div class="container">
-        <div class="section-head">
-          <div>
-            <h2 class="section-title">实验设备</h2>
-            <p class="section-subtitle">Laboratory Facilities</p>
+        <div class="publication-head">
+          <div class="publication-head-left">
+            <h2 class="section-title">学术论文</h2>
+            <p class="section-subtitle">Selected Representative Publications in the Last Two Years</p>
           </div>
-        </div>
 
         </div>
 
@@ -1554,8 +1553,8 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <h2 class="section-title">招生信息</h2>
-            <p class="section-subtitle">Contact Information</p>
+            <h2 class="section-title">Contact</h2>
+            <p class="section-subtitle">招生信息 / Contact Information</p>
           </div>
         </div>
 
@@ -1625,13 +1624,21 @@
     // Publications: show more / show less
     const pubToggle = document.getElementById("togglePublications");
     const hiddenPubs = Array.from(document.querySelectorAll(".publication-item.is-hidden"));
+    let publicationsExpanded = false;
+
     if (pubToggle && hiddenPubs.length) {
       pubToggle.addEventListener("click", () => {
-        const expanding = hiddenPubs.some(item => item.style.display !== "grid");
+        publicationsExpanded = !publicationsExpanded;
+
         hiddenPubs.forEach(item => {
-          item.style.display = expanding ? "grid" : "none";
+          if (publicationsExpanded) {
+            item.classList.remove("is-hidden");
+          } else {
+            item.classList.add("is-hidden");
+          }
         });
-        pubToggle.innerHTML = expanding
+
+        pubToggle.innerHTML = publicationsExpanded
           ? '<span class="show-more-icon">∧∧∧</span><span class="show-more-text">Show Less</span>'
           : '<span class="show-more-icon">∨∨∨</span><span class="show-more-text">Show More</span>';
       });
