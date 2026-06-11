@@ -522,17 +522,17 @@
 
     .publication-head-left h2 {
       margin: 0;
-      font-size: 30px;
-      line-height: 1.15;
-      font-weight: 850;
+      font-size: 44px;
+      line-height: 1.1;
+      font-weight: 950;
       letter-spacing: 0.01em;
     }
 
     .publication-head-left p {
-      margin: 4px 0 0;
+      margin: 8px 0 0;
       color: var(--muted);
-      font-size: 16px;
-      font-weight: 600;
+      font-size: 18px;
+      font-weight: 700;
     }
 
     .show-more-btn {
@@ -1016,7 +1016,7 @@
       }
 
       .publication-head-left h2 {
-        font-size: 25px;
+        font-size: 36px;
       }
 
       .pub-thumb img,
@@ -1445,7 +1445,7 @@
 
 
 
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/monoamnet.jpg" alt="" />
             </div>
@@ -1459,7 +1459,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/resdnet.jpg" alt="" />
             </div>
@@ -1474,7 +1474,7 @@
             </div>
           </article>
           
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/retinal-surgery.jpg" alt="" />
             </div>
@@ -1488,7 +1488,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/gantry-control.jpg" alt="" />
             </div>
@@ -1502,7 +1502,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/hierarchical-control.jpg" alt="" />
             </div>
@@ -1516,7 +1516,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/mono3d-augmentation.jpg" alt="" />
             </div>
@@ -1530,7 +1530,7 @@
               </p>
             </div>
           </article>
-          <article class="publication-item is-hidden hidden-publication">
+          <article class="publication-item is-hidden">
             <div class="paper-media placeholder">
               <img src="assets/publications/passivity-control.jpg" alt="" />
             </div>
@@ -1622,29 +1622,37 @@
     sections.forEach(section => observer.observe(section));
 
     // Publications: show more / show less
+    // 初始状态：所有 class="publication-item is-hidden" 的论文隐藏；
+    // 点击 Show More 后显示；再次点击 Show Less 后重新隐藏。
     const pubToggle = document.getElementById("togglePublications");
-    const hiddenPubs = Array.from(document.querySelectorAll(".publication-item.hidden-publication"));
+    const hiddenPubs = Array.from(document.querySelectorAll(".publication-item.is-hidden"));
     let publicationsExpanded = false;
 
-    function setPublicationState(expanded) {
-      publicationsExpanded = expanded;
+    function renderPublicationToggle() {
+      if (!pubToggle) return;
 
-      hiddenPubs.forEach(item => {
-        item.classList.toggle("is-hidden", !expanded);
-      });
-
-      if (pubToggle) {
-        pubToggle.setAttribute("aria-expanded", expanded ? "true" : "false");
-        pubToggle.innerHTML = expanded
-          ? '<span class="show-more-icon">∧∧∧</span><span class="show-more-text">Show Less</span>'
-          : '<span class="show-more-icon">∨∨∨</span><span class="show-more-text">Show More</span>';
+      if (publicationsExpanded) {
+        hiddenPubs.forEach(item => {
+          item.style.display = "grid";
+        });
+        pubToggle.setAttribute("aria-expanded", "true");
+        pubToggle.innerHTML =
+          '<span class="show-more-icon">∧∧∧</span><span class="show-more-text">Show Less</span>';
+      } else {
+        hiddenPubs.forEach(item => {
+          item.style.display = "none";
+        });
+        pubToggle.setAttribute("aria-expanded", "false");
+        pubToggle.innerHTML =
+          '<span class="show-more-icon">∨∨∨</span><span class="show-more-text">Show More</span>';
       }
     }
 
-    if (pubToggle && hiddenPubs.length) {
-      setPublicationState(false);
-      pubToggle.addEventListener("click", () => {
-        setPublicationState(!publicationsExpanded);
+    if (pubToggle && hiddenPubs.length > 0) {
+      renderPublicationToggle();
+      pubToggle.addEventListener("click", function () {
+        publicationsExpanded = !publicationsExpanded;
+        renderPublicationToggle();
       });
     }
 
