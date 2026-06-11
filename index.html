@@ -569,18 +569,18 @@
       border-top: 1px solid var(--line);
     }
 
-.publication-item {
-  display: grid;
-  grid-template-columns: 260px minmax(0, 1fr);
-  gap: 28px;
-  align-items: start;
-  padding: 28px 0;
-  border-bottom: 1px solid var(--line);
+.publications .container {
+  width: min(1380px, calc(100% - 48px));
 }
 
-    .publication-item.is-hidden {
-      display: none;
-    }
+.publication-item {
+  display: grid;
+  grid-template-columns: 220px minmax(0, 1fr);
+  gap: 28px;
+  align-items: start;
+  padding: 24px 0;
+  border-bottom: 1px solid var(--line);
+}
 
 .paper-media {
   position: relative;
